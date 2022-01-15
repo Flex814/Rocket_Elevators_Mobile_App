@@ -3,9 +3,9 @@
     "name": "mobileApp",
     "slug": "mobileApp",
     "version": "1.0.0",
-    "assetBundlePatterns": [
-      "**/*"
-    ]
+    "assetBundlePatterns": ["**/*"]
   },
-  "name": "mobileApp"
+  "name": "mobileApp",
+
+  "description": "Mobile Application "
 }
