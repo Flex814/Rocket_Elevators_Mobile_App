@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   loginButton: {
     flex: 0.5,
     width: "50%",
-    height: 60,
+    height: 50,
     backgroundColor: colors.primary,
     justifyContent: "center",
     alignItems: "center",

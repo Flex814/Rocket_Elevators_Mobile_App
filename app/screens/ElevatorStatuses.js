@@ -15,21 +15,22 @@ const ElevatorStatuses = (props) => {
   const { id } = props.route.params;
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
+  const endPoint = `https://jakerocket.azurewebsites.net/elevator/${id}`;
+  const changeEndPoint = `https://jakerocket.azurewebsites.net/elevator`;
 
-  
   useEffect(() => {
-    fetch("jakerocket.azurewebsites.net/elevator/" + id)
+    fetch(endPoint)
       .then((response) => response.json())
       .then((json) => setData(json))
       .catch((error) => console.error(error))
       .finally(() => setLoading(false));
   }, [data]);
 
-  useEffect(() => {
-    return () => {
-      console.log("cleans useEffect");
-    };
-  }, [isLoading]);
+  // useEffect(() => {
+  //   return () => {
+  //     console.log("cleans useEffect");
+  //   };
+  // }, [isLoading]);
 
   function updateStatus() {
     let headers = new Headers();
@@ -38,11 +39,11 @@ const ElevatorStatuses = (props) => {
     headers.append("Authorization", "Basic ");
     headers.append("Origin", "*");
 
-    fetch("jakerocket.azurewebsites.net/elevator/" + id, {
-      method: "GET",
+    fetch(changeEndPoint, {
+      method: "POST",
       mode: "cors",
       headers: new Headers({
-        "Content-Type": " application/json", 
+        "Content-Type": " application/json",
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Credentials": "true",
         "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT",
@@ -70,7 +71,7 @@ const ElevatorStatuses = (props) => {
         <Text
           style={[
             styles.status,
-            data.status == "Inactive"
+            data.status != "Active"
               ? { backgroundColor: "red" }
               : { backgroundColor: "green" },
           ]}
@@ -82,7 +83,13 @@ const ElevatorStatuses = (props) => {
         <Button
           style={styles.buttonText}
           mode="outlined"
-          onPress={() => updateStatus()}
+          onPress={() => {
+            props.navigation.navigate("ElevatorStatuses", {
+              id: id,
+              status: "Active",
+            });
+            updateStatus();
+          }}
           title="Set As Active"
         ></Button>
         <Button
@@ -104,12 +111,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   instructions: {
-    color: "#888",
+    color: "black",
     fontSize: 18,
     margin: 15,
   },
   status: {
-    padding: 20,
+    padding: 100,
     borderRadius: 5,
     color: "white",
     textAlign: "center",
@@ -128,7 +135,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   elevatorIdText: {
-    fontSize: 20,
+    fontSize: 220,
     color: "#fff",
   },
   image: {

@@ -13,7 +13,6 @@ import {
   TouchableOpacity,
   SafeAreaView,
 } from "react-native";
-import colors from "../config/colors.js";
 
 function LogIn(props) {
   const [email, onChangeText] = React.useState("");
@@ -72,7 +71,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   logo: {
-    width: 290,
+    width: 399,
     height: 100,
   },
   logoContainer: {
@@ -88,8 +87,9 @@ const styles = StyleSheet.create({
   LogInContainer: {
     flex: 1.0,
     width: 250,
+    height: 50,
     bottom: "0%",
-    backgroundColor: "rgba(52, 52, 52, 0.49)",
+    backgroundColor: "rgba(77, 77, 77, 1)",
     justifyContent: "center",
     alignItems: "center",
   },
