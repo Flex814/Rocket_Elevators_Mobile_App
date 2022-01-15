@@ -1,0 +1,1 @@
+This repository contains code for Codeboxx Week 14 of the Odyssey program, in which I was to create a mobile application using my choice of technology. I decided to use React with Expo to create a mobile app in accordance with the requirements.
